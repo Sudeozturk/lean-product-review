@@ -15,3 +15,11 @@ published methodology page and the terms of use.
 - [`ga4-bigquery-analiz-notlari.md`](ga4-bigquery-analiz-notlari.md) — funnel
   and cohort retention analysis on Google's public GA4 ecommerce dataset,
   written in BigQuery. Includes a measurement error I made and how I caught it.
+
+## Backlog
+
+Requirements R-1 to R-6 and the spike, tracked as a Jira backlog under a single epic.
+
+![Jira backlog](jira-backlog.png)
+
+![Acceptance criteria in Jira](jira-backlog2.png)
