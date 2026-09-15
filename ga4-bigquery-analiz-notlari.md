@@ -38,6 +38,8 @@ GROUP BY event_name
 ORDER BY event_count DESC;
 ```
 
+![Keşif sorgusu çıktısı](gorseller/kesif-sorgusu.png)
+
 17 farklı olay türü döndü. Funnel için seçtiklerim:
 
 | Olay | Olay sayısı | Kullanıcı |
@@ -82,7 +84,11 @@ FROM kullanici_adimlari;
 
 **Yöntem notu.** `MAX(IF(...))` kalıbı, kullanıcının onlarca olay satırını tek bir 1/0 bayrağına indiriyor: en az bir kez o olayı yaptıysa 1, hiç yapmadıysa 0. `GROUP BY user_pseudo_id` ile her kullanıcı tek satıra iniyor. Dıştaki `COUNTIF` bu bayrakları huni sırasına göre sayıyor — her adımda önceki adımların şartı da yazıldığı için gerçek bir geçiş dizisi çıkıyor.
 
+![Kullanıcı bazlı adım bayrakları](gorseller/kullanici-bayraklari.png)
+
 ### Sonuç
+
+![Funnel sorgusu çıktısı](gorseller/funnel-sonuc.png)
 
 | Adım | Kullanıcı | Bir önceki adımdan geçiş |
 |---|---|---|
@@ -155,6 +161,8 @@ ORDER BY gun_no;
 
 Sonuç: D0 94.790 kullanıcı, D1 %4,15, D7 %0,56, D14 %0,22.
 
+![İlk retention denemesi — 13-14. günde sıçrama](gorseller/retention-hatali.png)
+
 ### Hata: maruz kalma yanlılığı
 
 Eğrinin 13. günde 179, 14. günde 213 kullanıcıya çıktığını fark ettim. Monoton düşmesi gereken bir eğride bu sıçrama olmamalıydı.
@@ -194,6 +202,9 @@ ORDER BY gun_no;
 `HAVING` kullanmak zorunlu: `ilk_gun` bir aggregate sonucu olduğu için gruplama sonrası oluşuyor, `WHERE` ise gruplama öncesi çalışıyor.
 
 ### Sonuç ve karşılaştırma
+
+![1 Ocak kohortu retention çıktısı](gorseller/retention-duzeltilmis.png)
+
 
 | Gün | Karışık kohort | 1 Ocak kohortu |
 |---|---|---|
